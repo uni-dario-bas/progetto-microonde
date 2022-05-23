@@ -21,16 +21,16 @@ Nella seconda parte, verrà presentata l'implementazione utilizzata e verranno a
   - [Sentinel-1](#sentinel-1)
 
 - [Implementazione](#implementazione)
-    - [Caricamento dati](#caricamento-dati)
-    - [Filtro speckle](#filtro-speckle)
-    - [Analisi immagini BN](#analisi-immagini-bn)
-        - [Kharkiv](#kharkiv)
-        - [Melitopol](#melitopol)
-        - [Makiivka](#makiivka)
-        - [Zaporizzja](#zaporizzja)
-    - [Analisi immagini RGB](#analisi-immagini-rgb)
-        - [Kiev](#kiev)
-    - [Conclusioni](#conclusioni)
+  - [Caricamento dati](#caricamento-dati)
+  - [Filtro speckle](#filtro-speckle)
+  - [Analisi immagini BN](#analisi-immagini-bn)
+    - [Kharkiv](#kharkiv)
+    - [Melitopol](#melitopol)
+    - [Makiivka](#makiivka)
+    - [Zaporizzja](#zaporizzja)
+  - [Analisi immagini RGB](#analisi-immagini-rgb)
+    - [Kiev](#kiev)
+  - [Conclusioni](#conclusioni)
 
 - [Sitografia](#sitografia)
 
@@ -38,7 +38,7 @@ Nella seconda parte, verrà presentata l'implementazione utilizzata e verranno a
 Per Radar ad Apertura Sintetica (Synthetic Aperture Radar - SAR) si intende una particolare tecnica radar che permette di ottenere immagini ad alta risoluzione da grande distanza sfruttando le microonde.
 
 Il SAR rappresenta un esempio di sistema di imaging a microonde attivo.  
-Il sistema, infatti, invia impulsi radar lateralmente: grazie a questo principio di osservazione laterale, il radar restituisce al sensore i segnali che colpiscono i diversi oggetti sulla Terra in momenti differenti, permettendo di distinguerli. In particolare, gli impulsi laterali del radar formano le linee dell'immagine (ovvero la dimensione in range), mentre l'altra dimensione (la dimensione in azimuth) viene formata dal movimento e dalla direzione del sensore, che invia e riceve continuamente gli impulsi <sup>[1](#sitografia)</sup>.
+Questo, infatti, invia impulsi radar lateralmente: grazie a questo principio di osservazione laterale, il radar restituisce al sensore i segnali che colpiscono i diversi oggetti sulla Terra in momenti differenti, permettendo di distinguerli. In particolare, gli impulsi laterali del radar formano le linee dell'immagine (ovvero la dimensione in range), mentre l'altra dimensione (la dimensione in azimuth) viene formata dal movimento e dalla direzione del sensore, che invia e riceve continuamente gli impulsi <sup>[1](#sitografia)</sup>.
 
 I principali vantaggi provenienti dall'utilizzo di un sistema SAR rispetto ad un sistema ottico per l'imaging in alta risoluzione sono i seguenti <sup>[2](#sitografia)</sup>:
 - Possibilità di ottenere immagini indipendentemente dalle condizioni metereologiche;
@@ -74,7 +74,7 @@ Si noti che, in generale, maggiore la lunghezza d'onda maggiore la capacità del
 ### Polarizzazione
 La polarizzazione indica l'orientamento del piano nel quale l'onda elettromagnetica trasmessa oscilla.
 
-Quando il piano di oscillazione è orizzontale, la polarizzazione del segnale viene indicata utilizzando la lettera **H** (Horizontal), mentre quando è verticale, con la lettera **V** (Vertical).  
+Quando il piano di oscillazione è orizzontale, la polarizzazione del segnale viene indicata utilizzando la lettera **H** (Horizontal), mentre quando è verticale con la lettera **V** (Vertical).  
 
 Un sistema SAR può lavorare con segnali polarizzati in maniera differente - anche polarizzati diversamente in fase di trasmissione e di ricezione - e, tipicamente, i segnali trasmessi sono polarizzati linearmente.  
 Di conseguenza, sono possibili quattro diverse combinazioni di polarizzazioni dei segnali:
@@ -96,7 +96,7 @@ Sebbene siano diversi i fattori che possono influenzare il backscatter per una d
 Anche la tipologia di polarizzazione può influenzare il backscatter. In particolare<sup>[3](#sitografia)</sup>: 
 - La polarizzazione VV è più sensibile alle superfici ruvide (rough surface scattering);
 - Le polarizzazioni VH e HV sono più sensibili ai casi di scattering volumetrico;
-- Le polarizzazioni HH è più sensibile al double-bounce;
+- La polarizzazione HH è più sensibile al double-bounce;
 
 ### Angolo di incidenza
 Si definisce angolo di incidenza l'angolo formatosi tra l'onda incidente del radar e la normale della superficie su cui questo incide.  
@@ -107,7 +107,7 @@ Bisogna notare che il backscatter è minore quando l'immagine è acquisita a bas
 ### Speckle
 Per speckle si intende un rumore granulare presente nell'immagine SAR che ne degrada la qualità.
 
-Essendo questo un disturbo esistente in tutte le rilevazioni SAR, sono state messe a punto diverse tecniche che permettono di filitrare il rumore<sup>[2](#sitografia)</sup>.
+Essendo questo un disturbo esistente in tutte le rilevazioni, sono state messe a punto diverse tecniche che permettono di filitrare il rumore<sup>[2](#sitografia)</sup>.
 
 **Multi-look processing**  
 Il raggio emesso dal radar viene suddiviso in una serie di sotto-raggi (1-5). Sebbene le singole rilevazioni dei sotto-raggi siano soggetti al rumore, sommando e considerando la media di tutti i contributi è possibile ottenere un'immagine con speckle ridotto.
@@ -123,16 +123,16 @@ In particolare, considerando una regione montuosa, alcune tipologie di distorsio
 - Sovrapposizione o *layover*;
 - Ombreggiatura o *shadowing*.
 
-### Sentinel 1
+### Sentinel-1
 La missione Sentinel-1 comprende una costellazione di due satelliti con orbita polare, operanti in banda C<sup>[6](#sitografia)</sup>.  
 Ciascun satellite ha una copertura globale ogni 12 giorni, per cui è possibile ottenere una copertura totale del globo ogni 6 giorni utilizzando i dati di entrambi i satelliti.
 
 ## Implementazione
-Per condurre un'analisi dei dati SAR nelle zone urbane Ucraine distrutte dall'invasione Russa, è stato implementato uno script su Google Earth Engine.  
+Per condurre un'analisi dei dati SAR nelle zone urbane Ucraine distrutte dall'invasione Russa, è stato implementato uno script su [Google Earth Engine](https://code.earthengine.google.com/).  
 Sono stati adottate due metodologie diverse: una basata sul confronto di due immagini ad un solo livello ed una basata sulla costruzione di un'immagine rgb in cui ogni canale corrisponde ad un determinato periodo.
 
 ### Caricamento dati
-Tramite la funzione `Line drawing` di Google Earth Engine è stato disegnato un poligono sulla mappa corrispondente alla regione di interesse per cui scaricare ed analizzare i dati del radar (**ROI**). 
+Tramite la funzione `Line drawing` di Google Earth Engine è stato disegnato un poligono sulla mappa corrispondente alla regione di interesse (**ROI**) per cui scaricare ed analizzare i dati del radar. 
 
 In particolare sono state selezionate:
 
@@ -141,7 +141,7 @@ In particolare sono state selezionate:
 
 ![ROI](roi.png "ROI")
 
-Una volta scelta la ROI è stato possibile caricare i dati provenienti dal Sentinel-1 con la funzione `ee.ImageCollection('COPERNICUS/S1_GRD')`. Questa funzione restituisce i dati SAR in banda C in scala logaritmica.
+Una volta scelta la ROI è stato possibile caricare i dati provenienti dal Sentinel-1 con la funzione `ee.ImageCollection('COPERNICUS/S1_GRD')`: questa restituisce i dati SAR in banda C in scala logaritmica.
 
 Dal momento che i dati del Sentinel-1 vengono raccolti con configurazioni, risoluzioni, combinazioni di bande o orbite differenti è necessario filtrarli per ottenerne un sottoinsieme omogeneo.
 
@@ -149,7 +149,7 @@ Il processo di filtraggio descritto sopra è ottenibile applicando la funzione `
 
 Per questa analisi, i dati sono stati filtrati secondo le seguenti condizioni:
 
-- *instrumentMode: IW (Interferometric Wide Swath)*, ovvero scegliendo la modalità di utilizzo più generica che acquisisce dati per fasce di 250 km, con una risoluzione spaziale di 5m x 20m;
+- *instrumentMode: IW (Interferometric Wide Swath)*<sup>[7](#sitografia)</sup>, ovvero scegliendo la modalità di utilizzo più generica che acquisisce dati per fasce di 250 km, con una risoluzione spaziale di 5m x 20m;
 
 - *orbitProperties_pass: ASCENDING*, ovvero scegliendo l'orbita ascendente;
 
@@ -174,14 +174,14 @@ var during = collection.filterDate('2022-03-01', '2022-03-31').mosaic();
 var after = collection.filterDate('2022-04-01', '2022-04-30').mosaic();
 ```
 
-La prima delle tre sottocollezioni, `before`, si riferisce ad un periodo in cui la regione si trovava in condizioni normali;
-La seconda sottocollezione, `during`, contiene i dati del periodo iniziale dell'invasione Russa;
+La prima delle tre sottocollezioni, `before`, si riferisce ad un periodo in cui la regione si trovava in condizioni normali.  
+La seconda sottocollezione, `during`, contiene i dati del periodo iniziale dell'invasione Russa.  
 La terze sottocollezione, `after`, infine, è quella relativa al periodo più recente in cui un numero considerevole di zone urbane sono state distrutte.
 
 ### Filtro speckle
 Sebbene le immagini SAR abbiano la caratteristica di non subire alterazioni dovute alle condizioni meteo, hanno lo svantaggio di essere rumorose, fenomeno noto come [speckle](#speckle).
 
-Lo speckle riduce significativamente la qualità dell'immagine, dunque ridurlo è necessario.
+Lo speckle peggiora significativamente la qualità dell'immagine, dunque ridurlo è necessario.
 
 Per ottenere un risultato accettabile, è stata utilizzata la funzione `focal_mean` con raggio 50:
 
@@ -203,7 +203,7 @@ Map.addLayer(after_filtered, {min:-15, max:0}, 'After invasion filtered', 0);
 
 L'obiettivo di questa ricerca è stato quello di rilevare zone in cui l'intensità dei pixel diminuisce dall'immagine precedente all'invasione (derivata dalla collezione `before_filtered`) all' immagine successiva all'invasione (collezione `after_filtered`), per effetto della riduzione del double bounce. Questo evento si giustifica, infatti, con la  riduzione dell'area urbana.
 
-Di seguito vengono riportati degli esempi significativi di zone particolarmente colpiti da attacchi militari.
+Di seguito vengono riportati degli esempi significativi di zone particolarmente colpite da attacchi militari.
 
 #### Kharkiv
 Polarizzazione utilizzata: **VV**
@@ -243,7 +243,8 @@ Anche in questo caso si riportano zone, come quella a sud-est della città, in c
 
 Un'altra tecnica utilizzata per rilevare il cambiamento nelle zone urbane colpite dagli interventi militari ai danni delle città Ucraine, è stata quella di sovrapporre tre livelli derivati dalle tre collezioni di cui sopra,  assegnando a ciascuno di essi uno dei tre colori RGB, al fine di formare un'immagine a colori.
 
-Alla collezione before_filtered è stato assegnato il colore rosso, alla collezione during_filtered il colore verde e a after_filtered il rosso. Di tutte e tre le collezioni si è utilizzata la polarizzazione VV.
+Alla collezione `before_filtered` è stato assegnato il colore rosso, alla collezione `during_filtered` il colore verde e a `after_filtered` il rosso.  
+ Di tutte e tre le collezioni si è utilizzata la polarizzazione VV.
 
 ```javascript 
 var VV1 = ee.Image(before_filtered);
@@ -269,4 +270,6 @@ Entrambe le tecniche utilizzate hanno confermato la presenza di zone urbane che 
 *[3]. [Earthdata - What is SAR](https://earthdata.nasa.gov/learn/backgrounders/what-is-sar)*  
 *[4]. [ESA - ASAR Product Handbook](https://earth.esa.int/eogateway/documents/20142/37627/ASAR-Product-Handbook.pdf)*  
 *[5]. [Gregoriy Kaplan, Lior Fine, Victor Lukyanov, V. S. Manivasagam, Josef Tanny and Offer Rozenstein - Normalizing the Local Incidence Angle in Sentinel-1 Imagery to Improve Leaf Area Index, Vegetation Height, and Crop Coefficient Estimations](https://www.mdpi.com/2073-445X/10/7/680/pdf)*  
-*[6]. [Copericus - Sentinel-1 ](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1)*
+*[6]. [Copernicus - Sentinel-1 ](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1)*  
+*[7]. [Copernicus - Sentinel-1 IWS](https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/interferometric-wide-swath)*  
+*[8]. [GEE Docs - Image Collection ](https://developers.google.com/earth-engine/guides/ic_creating)*
