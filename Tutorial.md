@@ -174,9 +174,9 @@ var during = collection.filterDate('2022-03-01', '2022-03-31').mosaic();
 var after = collection.filterDate('2022-04-01', '2022-04-30').mosaic();
 ```
 
-La prima delle tre sottocollezioni, `before`, si riferisce ad un periodo in cui la regione si trovava in condizioni normali.  
-La seconda sottocollezione, `during`, contiene i dati del periodo iniziale dell'invasione Russa.  
-La terze sottocollezione, `after`, infine, è quella relativa al periodo più recente in cui un numero considerevole di zone urbane sono state distrutte.
+La prima delle tre sottocollezioni, `before`, si riferisce ad un periodo in cui la regione si trovava in condizioni normali.  
+La seconda sottocollezione, `during`, contiene i dati del periodo iniziale dell'invasione Russa.  
+La terze sottocollezione, `after`, infine, è quella relativa al periodo più recente in cui un numero considerevole di zone urbane sono state distrutte.
 
 ### Filtro speckle
 Sebbene le immagini SAR abbiano la caratteristica di non subire alterazioni dovute alle condizioni meteo, hanno lo svantaggio di essere rumorose, fenomeno noto come [speckle](#speckle).
