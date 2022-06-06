@@ -261,8 +261,64 @@ L'obiettivo di questa ricerca è stato evidenziare zone a prevalenza di rosso, o
 #### Kiev
 ![Kiev](Kiev_rgb.png "Kiev")
 
+### Confronto Tecniche
+
+Per eseguire un confronto delle tecniche illustrate fino a questo punto, è stato scelto come target dell'analisi un obiettivo dichiarato dal governo Russo: la stazione di Kiev.
+
+#### Polarizzazione VV
+
+![Stazione di Kiev prima dell'invasione](kiev_stazione_vv_before.png "Stazione di Kiev prima dell'invasione")
+
+![Stazione di Kiev dopo l'invasione](kiev_stazione_vv_after.png "Stazione di Kiev dopo l'invasione")
+
+#### Composizione RGB con Polarizzazione VV
+
+![Stazione di Kiev](kiev_stazione_vv_composite.png "Stazione di Kiev")
+
+#### Composizione RGB con Polarizzazione VH
+
+![Stazione di Kiev](kiev_stazione_vh_composite.png "Stazione di Kiev")
+
+### Classificatore Supervisionato
+
+Per generalizzare il più possibile quanto osservato, sono state utilizzate le evidenze degli step precedenti per addestrare un classificatore supervisionato.
+
+Tramite lo strumento di selezione sulla mappa, sono stati etichettate:
+- 101 immagini di zone distrutte, contraddistinte da poligoni rossi;
+- 54 immagini di terreno coltivato, contraddistinte da poligoni verdi;
+- 57 immagini di zona urbana, contraddistinte da poligoni bianchi;
+- 26 immagini di corsi d'acqua.
+
+Tutte le collezioni di immagini sono state salvate in memoria sotto forma di `FeatureCollection`, specificando per ognuna la proprietà `Type` valorizzata con un numero crescente (da 0 a 3), per differenziare ciascuna collezione, ed unite in un'unica collezione.
+Quest'ultima collezione costituisce il dato di training del classificatore.
+
+È stato scelto un classificatore basato su alberi di decisione, una delle tecniche più efficaci per il learning supervisionato.
+Il classificatore è fornito tramite le API di Google Earth Engine ed è stato configurato come descritto nel seguente codice:
+
+```javascript
+var classifier = ee.Classifier.smileCart().train({
+  features: training,
+  classProperty: 'type',
+  inputProperties: bands
+});
+```
+
+Infine, il risultato della classificazione è stato aggiunto come nuovo layer alla mappa.
+Di seguito se ne riportano i risultati visuali.
+
+- I pixel rossi indicano le zone distrutte;
+- i pixel verdi indicano il terreno coltivato;
+- i pixel bianchi indicano la zona urbana;
+- i pixel azzurri indicano corsi d'acqua.
+
+![Regione di Kiev](kiev_classificatore_1.png "Overview della città di Kiev e dintorni")
+![Dettaglio zona distrutta Kiev](kiev_classificatore_2.png "Dettaglio di una zona distrutta di Kiev")
+![Dettaglio zona urbana Kiev](kiev_classificatore_3.png "Dettaglio di una zona urbana di Kiev")
+
 ## Conclusioni
-Entrambe le tecniche utilizzate hanno confermato la presenza di zone urbane che hanno subito un cambiamento notevole dopo l'invasione militare.
+
+L'utilizzo delle tecniche di confronto di immagini SAR precedenti e successive ad un evento di distruzione urbana e di composizione RGB per rilevare cambiamenti nella morfologia delle città e delle zone abitate, si è rivelata ben funzionante.
+La sua applicazione generalizzata, mediante l'uso di un classificatore supervisionato ne ha esteso le possibilità e, pur scontrandosi con i limiti di memoria utilizzabili da Google Earth Engine, ha reso possibile l'analisi di zone molto estese.
 
 ## Sitografia
 *[1]. [ESA Eduspace IT - Radar ad Apertura Sintetica](https://www.esa.int/SPECIALS/Eduspace_Global_IT/SEMLT0G64RH_0.html)*  
