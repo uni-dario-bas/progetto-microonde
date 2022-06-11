@@ -211,15 +211,30 @@ Polarizzazione utilizzata: **VV**
 La zona nord-occidentale della città è quella in cui si riscontra riduzione di intensità nei pixel.
 
 ![Kharkiv prima dell'invasione russsa](Kharkiv_before.png "Kharkiv prima dell'invasione russa")
-
 ![Kharkiv dopo l'invasione russsa](Kharkiv_after.png "Kharkiv dopo l'invasione russa")
+
+![Freedom Square (Kharkiv) prima dell'invasione russsa](kharkiv_freedom_square_asc_vv_before.png "Freedom Square (Kharkiv) prima dell'invasione russa")
+![Freedom Square (Kharkiv) dopo l'invasione russsa](kharkiv_freedom_square_asc_vv_after.png "Freedom Square (Kharkiv) dopo l'invasione russa")
+
+#### Chuhuiv
+Polarizzazione utilizzata: **VV**
+
+![Chuhuiv prima dell'invasione russsa](chuhuiv_airport_vv_before.png "Chuhuiv prima dell'invasione russa")
+![Chuhuiv dopo l'invasione russsa](chuhuiv_airport_vv_after.png "Chuhuiv dopo l'invasione russa")
+
+Il cambiamento osservato è confermato dai fatti di cronaca:
+![Cronaca Chuhuiv](chuhuiv_airport_news.jpeg "Cronaca Chuhuiv")
 
 #### Melitopol
 Polarizzazione utilizzata: **VV**
 
 ![Melitopol prima dell'invasione russsa](Melitopol_before.png "Melitopol prima dell'invasione russa")
-
 ![Melitopol dopo l'invasione russsa](Melitopol_after.png "Melitopol dopo l'invasione russa")
+
+L'aeroporto è stato vittima di un bombardamento.
+
+![Aeroporto di Melitopol prima dell'invasione russsa](melitopol_airport_asc_vv_before.png "Aeroporto di Melitopol prima dell'invasione russa")
+![Aeroporto di Melitopol dopo l'invasione russsa](melitopol_airport_asc_vv_after.png "Aeroporto di Melitopol dopo l'invasione russa")
 
 #### Makiivka
 Polarizzazione utilizzata: **VV**
@@ -227,7 +242,6 @@ Polarizzazione utilizzata: **VV**
 A nord-est della città di Makiivka (NE di Donetsk), sembra che sparisca completamente una zona urbana.
 
 ![Makiivka prima dell'invasione russsa](before.png "Makiivka prima dell'invasione russsa")
-
 ![Makiivka dopo l'invasione russsa](after.png "Makiivka dopo l'invasione russa")
 
 #### Zaporizzja
@@ -236,8 +250,38 @@ Polarizzazione utilizzata: **VH**
 Anche in questo caso si riportano zone, come quella a sud-est della città, in cui l'area urbana sembra più frastagliata.
 
 ![Zaporizzja prima dell'invasione russsa](Zaporizzja_before_VH.png "Zaporizzja prima dell'invasione russa")
-
 ![Zaporizzja dopo l'invasione russsa](Zaporizzja_after_VH.png "Zaporizzja dopo l'invasione russa")
+
+La centrale nucleare è stata colpita da un incendio.
+
+![Zaporizzja centrale nucleare prima dell'invasione russsa](zaporizhia_nuclear_asc_vv_before.png "Zaporizzja centrale nucleare prima dell'invasione russa")
+![Zaporizzja centrale nucleare dopo l'invasione russsa](zaporizhia_nuclear_asc_vv_after.png "Zaporizzja centrale nucleare dopo l'invasione russa")
+
+#### Kiev
+Polarizzazione utilizzata: **VV**
+
+Le immagini mostrano un ponte distrutto nella sua parte a ovest. Si noti che la risoluzione è di 20m per pixel.
+
+![Kiev prima dell'invasione russsa](kiev_bridge_asc_vv_before.png "Kiev prima dell'invasione russa")
+![Kiev dopo l'invasione russsa](kiev_bridge_asc_vv_after.png "Kiev dopo l'invasione russa")
+
+
+
+### Considerazioni
+Nello studio delle immagini in scala di grigi, spesso è emerso un risultato opposto a quello atteso, ovvero laddove ci si aspettava che un pixel da brillante diventasse scuro, si è ottenuta una maggiore concentrazione di pixel bianchi.
+La spiegazione di questo fenomeno è riconducibile allo spargimento di detriti, i quali hanno contribuito a rendere ruvida una superficie altrimenti piatta, come ad esempio il manto stradale o i parcheggi.
+
+Di seguito si riportano alcuni esempi:
+
+#### Bucha
+Bucha è una piccola città a 30km da Kiev che ha subito un violento massacro.
+Nell'immagine seguente sono riportati due edifici prefabbricati caratterizzati da un soffitto piatto, quindi con un pixel associato atteso nero. L'immagine successiva all'attacco russo, invece, mostra lo stesso edificio caratterizzato da un backscattering molto marcato, segno del crollo del tetto e dell'accumulo di detriti.
+
+![Bucha prima dell'invasione russsa](bucha_asc_vv_before.png "Bucha prima dell'invasione russa")
+![Bucha dopo l'invasione russsa](bucha_asc_vv_after.png "Bucha dopo l'invasione russa")
+
+![Bucha prima dell'invasione russsa](bucha_asc_vv_before_2.png "Bucha prima dell'invasione russa")
+![Bucha dopo l'invasione russsa](bucha_asc_vv_after_2.png "Bucha dopo l'invasione russa")
 
 ### Analisi immagini RGB
 
@@ -318,6 +362,7 @@ Di seguito se ne riportano i risultati visuali.
 ## Conclusioni
 
 L'utilizzo delle tecniche di confronto di immagini SAR precedenti e successive ad un evento di distruzione urbana e di composizione RGB per rilevare cambiamenti nella morfologia delle città e delle zone abitate, si è rivelata ben funzionante.
+Lo studio nel caso della scala dei grigi ha mostrato risultati anche diversi da quelli attesi, ma giustificati da un fondamento teorico. Questa osservazione dimostra l'imprescindibilità di una supervisione al processo di classificazione.
 La sua applicazione generalizzata, mediante l'uso di un classificatore supervisionato ne ha esteso le possibilità e, pur scontrandosi con i limiti di memoria utilizzabili da Google Earth Engine, ha reso possibile l'analisi di zone molto estese.
 
 ## Sitografia
