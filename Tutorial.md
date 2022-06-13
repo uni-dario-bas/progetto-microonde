@@ -201,7 +201,7 @@ Map.addLayer(during_filtered, {min:-15, max:0}, 'During invasion filtered', 0);
 Map.addLayer(after_filtered, {min:-15, max:0}, 'After invasion filtered', 0);
 ```
 
-L'obiettivo di questa ricerca è stato quello di rilevare zone in cui l'intensità dei pixel diminuisce dall'immagine precedente all'invasione (derivata dalla collezione `before_filtered`) all' immagine successiva all'invasione (collezione `after_filtered`), per effetto della riduzione del double bounce. Questo evento si giustifica, infatti, con la  riduzione dell'area urbana.
+L'obiettivo di questa ricerca è stato quello di rilevare zone in cui l'intensità dei pixel diminuisce dall'immagine precedente all'invasione (derivata dalla collezione `before_filtered`) all' immagine successiva all'invasione (collezione `after_filtered`), per effetto della riduzione del double bounce. Questo evento si giustifica, infatti, con la  riduzione dell'area urbana.
 
 Di seguito vengono riportati degli esempi significativi di zone particolarmente colpite da attacchi militari.
 
