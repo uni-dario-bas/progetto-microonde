@@ -307,7 +307,7 @@ L'obiettivo di questa ricerca è stato evidenziare zone a prevalenza di rosso, o
 
 ### Confronto Tecniche
 
-Per eseguire un confronto delle tecniche illustrate fino a questo punto, è stato scelto come target dell'analisi un obiettivo dichiarato dal governo Russo: la stazione di Kiev.
+Per eseguire un confronto delle tecniche illustrate fino a questo punto, è stato scelto come target dell'analisi l'impianto di riparazione di vagoni ferroviari di Darnytsia, nella periferia di Kiev.
 
 #### Polarizzazione VV
 
@@ -322,6 +322,10 @@ Per eseguire un confronto delle tecniche illustrate fino a questo punto, è stat
 #### Composizione RGB con Polarizzazione VH
 
 ![Stazione di Kiev](kiev_stazione_vh_composite.png "Stazione di Kiev")
+
+#### Foto
+
+![Stazione di Kiev](darnytsia_kiev_railway.webp "Stazione di Kiev")
 
 ### Classificatore Supervisionato
 
