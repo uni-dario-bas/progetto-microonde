@@ -58,7 +58,7 @@ La capacità dei radar SAR di poter ottenere immagini indipendentemente dalle co
 Le diverse lunghezze d'onda, assieme alle relative frequenze, vengono denominate bande e sono designate attraverso l'uso di lettere (es. C, K, P, ecc...).  
 In tabella vengono riportate le diverse bande assieme alla frequenza, la lunghezza d'onda e l'ambito di utilizzo tipico <sup>[3](#sitografia)</sup>.
 
-| Banda | Lunghezza d'onda | Frequenza | Caso d'uso
+| Banda | Frequenza | Lunghezza d'onda | Caso d'uso
 | ----- | ---------------- | --------- | ----------
 | Ka | 27–40 GHz | 1.1–0.8 cm | Utilizzata raramente (airport surveillance) 
 | K  | 18–27 GHz | 1.7–1.1 cm | Utilizzata raramente (H2O absorption)
@@ -183,10 +183,10 @@ Sebbene le immagini SAR abbiano la caratteristica di non subire alterazioni dovu
 
 Lo speckle peggiora significativamente la qualità dell'immagine, dunque ridurlo è necessario.
 
-Per ottenere un risultato accettabile, è stata utilizzata la funzione `focal_mean` con raggio 50:
+Per ottenere un risultato accettabile, è stata utilizzata la funzione `focal_mean` con raggio 10:
 
 ```javascript
-var SMOOTHING_RADIUS = 50;
+var SMOOTHING_RADIUS = 10;
 var before_filtered = before.focal_mean(SMOOTHING_RADIUS, 'circle', 'meters');
 var during_filtered = during.focal_mean(SMOOTHING_RADIUS, 'circle', 'meters');
 var after_filtered = after.focal_mean(SMOOTHING_RADIUS, 'circle', 'meters');
@@ -211,15 +211,18 @@ Polarizzazione utilizzata: **VV**
 La zona nord-occidentale della città è quella in cui si riscontra riduzione di intensità nei pixel.
 
 ![Kharkiv prima dell'invasione russsa](Kharkiv_before.png "Kharkiv prima dell'invasione russa")
+
 ![Kharkiv dopo l'invasione russsa](Kharkiv_after.png "Kharkiv dopo l'invasione russa")
 
 ![Freedom Square (Kharkiv) prima dell'invasione russsa](kharkiv_freedom_square_asc_vv_before.png "Freedom Square (Kharkiv) prima dell'invasione russa")
+
 ![Freedom Square (Kharkiv) dopo l'invasione russsa](kharkiv_freedom_square_asc_vv_after.png "Freedom Square (Kharkiv) dopo l'invasione russa")
 
 #### Chuhuiv
 Polarizzazione utilizzata: **VV**
 
 ![Chuhuiv prima dell'invasione russsa](chuhuiv_airport_vv_before.png "Chuhuiv prima dell'invasione russa")
+
 ![Chuhuiv dopo l'invasione russsa](chuhuiv_airport_vv_after.png "Chuhuiv dopo l'invasione russa")
 
 Il cambiamento osservato è confermato dai fatti di cronaca:
@@ -229,11 +232,13 @@ Il cambiamento osservato è confermato dai fatti di cronaca:
 Polarizzazione utilizzata: **VV**
 
 ![Melitopol prima dell'invasione russsa](Melitopol_before.png "Melitopol prima dell'invasione russa")
+
 ![Melitopol dopo l'invasione russsa](Melitopol_after.png "Melitopol dopo l'invasione russa")
 
 L'aeroporto è stato vittima di un bombardamento.
 
 ![Aeroporto di Melitopol prima dell'invasione russsa](melitopol_airport_asc_vv_before.png "Aeroporto di Melitopol prima dell'invasione russa")
+
 ![Aeroporto di Melitopol dopo l'invasione russsa](melitopol_airport_asc_vv_after.png "Aeroporto di Melitopol dopo l'invasione russa")
 
 #### Makiivka
@@ -242,6 +247,7 @@ Polarizzazione utilizzata: **VV**
 A nord-est della città di Makiivka (NE di Donetsk), sembra che sparisca completamente una zona urbana.
 
 ![Makiivka prima dell'invasione russsa](before.png "Makiivka prima dell'invasione russsa")
+
 ![Makiivka dopo l'invasione russsa](after.png "Makiivka dopo l'invasione russa")
 
 #### Zaporizzja
@@ -250,11 +256,13 @@ Polarizzazione utilizzata: **VH**
 Anche in questo caso si riportano zone, come quella a sud-est della città, in cui l'area urbana sembra più frastagliata.
 
 ![Zaporizzja prima dell'invasione russsa](Zaporizzja_before_VH.png "Zaporizzja prima dell'invasione russa")
+
 ![Zaporizzja dopo l'invasione russsa](Zaporizzja_after_VH.png "Zaporizzja dopo l'invasione russa")
 
 La centrale nucleare è stata colpita da un incendio.
 
 ![Zaporizzja centrale nucleare prima dell'invasione russsa](zaporizhia_nuclear_asc_vv_before.png "Zaporizzja centrale nucleare prima dell'invasione russa")
+
 ![Zaporizzja centrale nucleare dopo l'invasione russsa](zaporizhia_nuclear_asc_vv_after.png "Zaporizzja centrale nucleare dopo l'invasione russa")
 
 #### Kiev
@@ -263,6 +271,7 @@ Polarizzazione utilizzata: **VV**
 Le immagini mostrano un ponte distrutto nella sua parte a ovest. Si noti che la risoluzione è di 20m per pixel.
 
 ![Kiev prima dell'invasione russsa](kiev_bridge_asc_vv_before.png "Kiev prima dell'invasione russa")
+
 ![Kiev dopo l'invasione russsa](kiev_bridge_asc_vv_after.png "Kiev dopo l'invasione russa")
 
 
@@ -278,9 +287,11 @@ Bucha è una piccola città a 30km da Kiev che ha subito un violento massacro.
 Nell'immagine seguente sono riportati due edifici prefabbricati caratterizzati da un soffitto piatto, quindi con un pixel associato atteso nero. L'immagine successiva all'attacco russo, invece, mostra lo stesso edificio caratterizzato da un backscattering molto marcato, segno del crollo del tetto e dell'accumulo di detriti.
 
 ![Bucha prima dell'invasione russsa](bucha_asc_vv_before.png "Bucha prima dell'invasione russa")
+
 ![Bucha dopo l'invasione russsa](bucha_asc_vv_after.png "Bucha dopo l'invasione russa")
 
 ![Bucha prima dell'invasione russsa](bucha_asc_vv_before_2.png "Bucha prima dell'invasione russa")
+
 ![Bucha dopo l'invasione russsa](bucha_asc_vv_after_2.png "Bucha dopo l'invasione russa")
 
 ### Analisi immagini RGB
@@ -360,7 +371,10 @@ Di seguito se ne riportano i risultati visuali.
 - i pixel azzurri indicano corsi d'acqua.
 
 ![Regione di Kiev](kiev_classificatore_1.png "Overview della città di Kiev e dintorni")
+
 ![Dettaglio zona distrutta Kiev](kiev_classificatore_2.png "Dettaglio di una zona distrutta di Kiev")
+
+
 ![Dettaglio zona urbana Kiev](kiev_classificatore_3.png "Dettaglio di una zona urbana di Kiev")
 
 ## Conclusioni
